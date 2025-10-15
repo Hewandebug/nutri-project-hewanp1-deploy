@@ -1,0 +1,9 @@
+{
+  "buildCommand": "npm run build --prefix client",
+  "outputDirectory": "client/build",
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}
