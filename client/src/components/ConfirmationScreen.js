@@ -21,6 +21,39 @@ import {
 } from '@mui/icons-material';
 
 function ConfirmationScreen({ userData }) {
+  if (!userData || !userData.profile) {
+    return (
+      <Container maxWidth="sm">
+        <Box
+          sx={{
+            minHeight: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            py: 4,
+          }}
+        >
+          <Paper
+            elevation={3}
+            sx={{
+              p: 4,
+              width: '100%',
+              borderRadius: 3,
+              textAlign: 'center',
+            }}
+          >
+            <Typography variant="h5" gutterBottom color="primary">
+              You're all set!
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              We couldn't load your confirmation details, but your account setup is complete.
+            </Typography>
+          </Paper>
+        </Box>
+      </Container>
+    );
+  }
+
   const { profile, email } = userData;
 
   const getDietGoalDisplay = (goal) => {
