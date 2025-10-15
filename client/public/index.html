@@ -1,17 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#A51C30" />
-    <meta name="description" content="CrimsonFuel - Harvard Student Nutrition Tracker" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <title>CrimsonFuel - Harvard Nutrition Tracker</title>
+    <title>CrimsonFuel Onboarding</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <main class="layout">
+      <section class="card" data-view="signup">
+        <header class="card__header">
+          <div class="brand-icon" aria-hidden="true">🏋️‍♀️</div>
+          <h1>CrimsonFuel</h1>
+          <p class="subtitle">Harvard Student Nutrition Tracker</p>
+        </header>
+
+        <form id="signup-form" class="form" novalidate>
+          <h2>Create your account</h2>
+          <p class="form__description">
+            Use your Harvard College email to unlock personalized fueling
+            recommendations.
+          </p>
+
+          <div class="field">
+            <label for="signup-email">Harvard email</label>
+            <input
+              id="signup-email"
+              name="email"
+              type="email"
+              placeholder="your.name@college.harvard.edu"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="field">
+            <label for="signup-password">Password</label>
+            <input
+              id="signup-password"
+              name="password"
+              type="password"
+              minlength="8"
+              required
+              autocomplete="new-password"
+            />
+            <small class="hint">Minimum 8 characters</small>
+          </div>
+
+          <div class="field">
+            <label for="signup-confirm">Confirm password</label>
+            <input
+              id="signup-confirm"
+              name="confirm"
+              type="password"
+              minlength="8"
+              required
+              autocomplete="new-password"
+            />
+          </div>
+
+          <div class="alert" data-signup-error hidden role="alert"></div>
+
+          <button class="button" type="submit">Sign up</button>
+          <p class="fine-print">
+            By signing up you agree to track your nutrition and champion your
+            performance.
+          </p>
+        </form>
+      </section>
+
+      <section class="card card--wide hidden" data-view="questionnaire">
+        <header class="card__header">
+          <h1>Welcome to CrimsonFuel</h1>
+          <p class="subtitle" data-user-email></p>
+        </header>
+
+        <div class="progress">
+          <div class="progress__bar" data-progress-bar></div>
+        </div>
+
+        <div class="alert" data-questionnaire-error hidden role="alert"></div>
+
+        <form id="questionnaire-form" class="form">
+          <fieldset class="step" data-step="0">
+            <legend>Personal information</legend>
+            <div class="step__body">
+              <div class="field">
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" placeholder="John Harvard" required />
+              </div>
+
+              <div class="field">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                  <option value="" disabled selected>Select gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="non-binary">Non-binary</option>
+                  <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="step hidden" data-step="1">
+            <legend>Athletic profile</legend>
+            <div class="step__body">
+              <div class="field">
+                <label for="sportType">Sport type</label>
+                <select id="sportType" name="sportType" required>
+                  <option value="" disabled selected>Select a sport</option>
+                  <option value="football">Football</option>
+                  <option value="basketball">Basketball</option>
+                  <option value="soccer">Soccer</option>
+                  <option value="rowing">Rowing</option>
+                  <option value="track-field">Track &amp; Field</option>
+                  <option value="swimming">Swimming</option>
+                  <option value="lacrosse">Lacrosse</option>
+                  <option value="hockey">Hockey</option>
+                  <option value="tennis">Tennis</option>
+                  <option value="cross-country">Cross Country</option>
+                  <option value="wrestling">Wrestling</option>
+                  <option value="volleyball">Volleyball</option>
+                  <option value="general-fitness">General fitness</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <fieldset class="field-group" aria-labelledby="training-label">
+                <legend id="training-label">Training frequency</legend>
+                <label class="option">
+                  <input type="radio" name="trainingFrequency" value="1-2-days" />
+                  <span>1-2 days per week (Light)</span>
+                </label>
+                <label class="option">
+                  <input type="radio" name="trainingFrequency" value="3-4-days" />
+                  <span>3-4 days per week (Moderate)</span>
+                </label>
+                <label class="option">
+                  <input type="radio" name="trainingFrequency" value="5-6-days" />
+                  <span>5-6 days per week (Intense)</span>
+                </label>
+                <label class="option">
+                  <input type="radio" name="trainingFrequency" value="daily" />
+                  <span>Daily training (Elite)</span>
+                </label>
+              </fieldset>
+            </div>
+          </fieldset>
+
+          <fieldset class="step hidden" data-step="2">
+            <legend>Nutrition goals</legend>
+            <div class="step__body options-grid">
+              <label class="option-card">
+                <input type="radio" name="dietGoal" value="muscle-gain" />
+                <div>
+                  <h3>Muscle gain</h3>
+                  <p>Build strength and increase muscle mass.</p>
+                </div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="dietGoal" value="weight-loss" />
+                <div>
+                  <h3>Weight loss</h3>
+                  <p>Reduce body fat while staying explosive.</p>
+                </div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="dietGoal" value="maintenance" />
+                <div>
+                  <h3>Maintenance</h3>
+                  <p>Maintain weight and keep energy steady.</p>
+                </div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="dietGoal" value="performance" />
+                <div>
+                  <h3>Peak performance</h3>
+                  <p>Optimize recovery for competition.</p>
+                </div>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="actions">
+            <button type="button" class="button button--ghost" data-action="back">
+              Back
+            </button>
+            <button type="button" class="button" data-action="next">Next</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card hidden" data-view="confirmation">
+        <header class="card__header">
+          <div class="brand-icon" aria-hidden="true">🎉</div>
+          <h1>You're all set!</h1>
+          <p class="subtitle">Welcome to the CrimsonFuel community.</p>
+        </header>
+
+        <article class="summary" data-summary>
+          <p class="summary__lead">
+            Hang tight while we load your personalized plan...
+          </p>
+        </article>
+
+        <button type="button" class="button button--ghost" data-action="start-over">
+          Start over
+        </button>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
   </body>
 </html>
